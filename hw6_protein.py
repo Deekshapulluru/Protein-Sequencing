@@ -17,8 +17,17 @@ Parameters: str
 Returns: str
 '''
 def readFile(filename):
-    return
-
+    file=open(filename,"r")
+    content=file.read()
+    #print(type(content))
+    string_without_line_breaks = ""
+    for line in content:
+        stripped_line = line.rstrip()
+        string_without_line_breaks+= stripped_line
+    file.close()
+    #print(string_without_line_breaks)
+    return string_without_line_breaks
+    # #splitlines() will reaturn a list. 
 
 '''
 dnaToRna(dna, startIndex)
@@ -27,9 +36,17 @@ Parameters: str ; int
 Returns: list of strs
 '''
 def dnaToRna(dna, startIndex):
-    return
-
-
+    list=[]
+    n=3
+    Dna=dna.replace("T","U")
+    split_Dna=[Dna[i:i+n] for i in range(startIndex,len(Dna),n)]
+    for i in range(len(split_Dna)):
+        #print(split_Dna[i])
+        list.append(split_Dna[i])
+        if (split_Dna[i]=="UAA" or split_Dna[i]=="UAG" or split_Dna[i]=="UGA"):
+            break
+    #print(list)
+    return list
 '''
 makeCodonDictionary(filename)
 #3 [Check6-1]
